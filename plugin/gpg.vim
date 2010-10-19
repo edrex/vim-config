@@ -13,13 +13,13 @@ augroup encrypted
   " and run any BufReadPost autocmds matching the file name without the .gpg
   " extension
   autocmd BufReadPost,FileReadPost *.gpg
-    \ execute "'[,']!gpg --decrypt --default-recipient-self" |
+    \ execute "'[,']!gpg --decrypt --default-recipient-self 2> /dev/null" |
     \ setlocal nobin |
     \ execute "doautocmd BufReadPost " . expand("%:r")
   " Set binary file format and encrypt the contents before writing the file
   autocmd BufWritePre,FileWritePre *.gpg
     \ setlocal bin |
-    \ '[,']!gpg --encrypt --default-recipient-self
+    \ execute "'[,']!gpg --encrypt --default-recipient-self 2> /dev/null"
   " After writing the file, do an :undo to revert the encryption in the
   " buffer, and reset binary file format
   autocmd BufWritePost,FileWritePost *.gpg
