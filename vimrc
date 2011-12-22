@@ -1,5 +1,5 @@
 set mouse=a
-colorscheme elflord
+"colorscheme elflord
 
 vnoremap < <gv
 vnoremap > >gv
